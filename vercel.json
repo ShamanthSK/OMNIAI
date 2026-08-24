@@ -1,38 +1,15 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/app/main.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
+  "buildCommand": "npm run build --prefix frontend",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "npm install --prefix frontend",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "backend/app/main.py"
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": "/frontend/dist/assets/$1"
-    },
-    {
-      "source": "/favicon.svg",
-      "destination": "/frontend/dist/favicon.svg"
-    },
-    {
-      "source": "/icons.svg",
-      "destination": "/frontend/dist/icons.svg"
+      "destination": "/api/index.py"
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/dist/index.html"
+      "destination": "/index.html"
     }
   ]
 }
