@@ -2,9 +2,14 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import DeclarativeBase
 from app.core.config import settings
 
+import os
+
 # For SQLite async, handle file path
 db_url = settings.DATABASE_URL
-if db_url.startswith("sqlite://"):
+if "VERCEL" in os.environ and "sqlite" in db_url.lower():
+    # Vercel serverless has a read-only filesystem, write to /tmp instead
+    db_url = "sqlite+aiosqlite:////tmp/omniai.db"
+elif db_url.startswith("sqlite://"):
     db_url = db_url.replace("sqlite://", "sqlite+aiosqlite://", 1)
 
 engine = create_async_engine(
