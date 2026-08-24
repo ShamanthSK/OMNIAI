@@ -1,0 +1,33 @@
+# Environment
+.env
+
+# Databases
+*.db
+*.sqlite
+omniai.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+ENV/
+
+# Node / JS
+node_modules/
+dist/
+build/
+.eslintcache
+
+# IDEs & System
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Antigravity agent temp files
+.agents/
+scratch/
+.gemini/
